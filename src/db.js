@@ -22,6 +22,7 @@ db.exec(`
     id               INTEGER PRIMARY KEY AUTOINCREMENT,
     plaid_account_id TEXT    NOT NULL UNIQUE,
     plaid_item_id    TEXT    NOT NULL,
+    access_token     TEXT    NOT NULL,
     name             TEXT    NOT NULL,
     official_name    TEXT,
     type             TEXT    NOT NULL,
@@ -67,5 +68,11 @@ db.exec(`
     completed_at     TEXT
   );
 `);
+
+// Migrate existing DBs that predate the access_token column
+const cols = db.pragma('table_info(accounts)').map((c) => c.name);
+if (!cols.includes('access_token')) {
+  db.exec("ALTER TABLE accounts ADD COLUMN access_token TEXT NOT NULL DEFAULT ''");
+}
 
 module.exports = db;
