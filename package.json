@@ -18,5 +18,11 @@
   "bugs": {
     "url": "https://github.com/flawavi/money-mgmt/issues"
   },
-  "homepage": "https://github.com/flawavi/money-mgmt#readme"
+  "homepage": "https://github.com/flawavi/money-mgmt#readme",
+  "dependencies": {
+    "better-sqlite3": "^12.6.2",
+    "dotenv": "^17.3.1",
+    "node-cron": "^4.2.1",
+    "plaid": "^41.3.0"
+  }
 }
